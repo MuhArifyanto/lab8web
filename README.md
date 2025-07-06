@@ -230,7 +230,7 @@ class Artikel extends BaseController
 
 ## Memodifikasi View
 Buka folder view/artikel sesuaikan masing-masing view.
-# index.php
+- index.php
 ![{417A4590-0293-42DD-9C99-33CB3BF73483}](https://github.com/user-attachments/assets/9eb6e44d-4de3-4c2e-902c-d0a0da4ffe4c)
 
 admin_index.php
@@ -324,11 +324,11 @@ admin_index.php
 <?= $this->include('template/admin_footer'); ?>
 ```
 
-# form_add.php
+- form_add.php
 ![{1A08CA5F-FDF5-416B-AC43-041B6C11FB5B}](https://github.com/user-attachments/assets/53077913-1531-4e56-b4f6-e1f11cff0925)
 
 
-# form_edit.php
+- form_edit.php
 ![{D7D4F2FA-98B3-403B-AC0F-901B722A7515}](https://github.com/user-attachments/assets/75a1f209-a5b0-402f-b862-abe6ca2faeb7)
 
 ##  Testing Fitur Relasi Artikel dan Kategori
@@ -346,7 +346,7 @@ Fitur ini menguji apakah proses input artikel baru berhasil menyimpan data **ter
 Fitur ini menguji apakah admin dapat mengubah data artikel **termasuk mengganti kategori** yang telah dipilih sebelumnya.
 ![{10BF728C-A7CE-4033-95A3-733FDDFFC1C1}](https://github.com/user-attachments/assets/d78222ff-88bd-4c2b-84e3-8363359a8afa)
 
-# Testing: Menghapus Artikel
+- Testing: Menghapus Artikel
 
 Fitur ini menguji apakah admin dapat **menghapus artikel** yang sudah ada, dan memastikan data benar-benar terhapus dari database.
 ## Sebelum
@@ -433,12 +433,12 @@ Selesaikan semua langkah praktikum di atas.
 Modifikasi tampilan data artikel dan pagination sesuai kebutuhan desain.
 ![{1F7E7A54-D651-4DEC-8178-517F14BB6392}](https://github.com/user-attachments/assets/f8584e80-40ba-45b6-98fd-473d476bba6c)
 
-# Implementasikan fitur sorting (mengurutkan artikel berdasarkan judul, dll.) dengan AJAX.  
+- Implementasikan fitur sorting (mengurutkan artikel berdasarkan judul, dll.) dengan AJAX.  
 Berdasarkan Judul dan kategori :
 ![{E2781FE6-02C6-4753-A61D-AC3B7AE66F3C}](https://github.com/user-attachments/assets/40a15961-fdf1-4215-b544-b015fd1e8539)
 
-# Berdasarkan Judul:
+- Berdasarkan Judul:
 ![{5666588C-9A8D-4CCD-A782-DA09C26911F1}](https://github.com/user-attachments/assets/469ebb77-5cd2-4aa1-bc06-ae9b2b749b9d)
 
-# Berdasaekan Kategori
+- Berdasaekan Kategori
 ![{98802889-33EB-4A4C-9C42-F056B0B687F5}](https://github.com/user-attachments/assets/aabee613-7f82-4b75-a221-5a0022aef72c)
