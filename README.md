@@ -324,11 +324,11 @@ admin_index.php
 <?= $this->include('template/admin_footer'); ?>
 ```
 
-- form_add.php
+## form_add.php
 ![{1A08CA5F-FDF5-416B-AC43-041B6C11FB5B}](https://github.com/user-attachments/assets/53077913-1531-4e56-b4f6-e1f11cff0925)
 
 
-- form_edit.php
+## form_edit.php
 ![{D7D4F2FA-98B3-403B-AC0F-901B722A7515}](https://github.com/user-attachments/assets/75a1f209-a5b0-402f-b862-abe6ca2faeb7)
 
 ##  Testing Fitur Relasi Artikel dan Kategori
@@ -346,7 +346,7 @@ Fitur ini menguji apakah proses input artikel baru berhasil menyimpan data **ter
 Fitur ini menguji apakah admin dapat mengubah data artikel **termasuk mengganti kategori** yang telah dipilih sebelumnya.
 ![{10BF728C-A7CE-4033-95A3-733FDDFFC1C1}](https://github.com/user-attachments/assets/d78222ff-88bd-4c2b-84e3-8363359a8afa)
 
-- Testing: Menghapus Artikel
+# Testing: Menghapus Artikel
 
 Fitur ini menguji apakah admin dapat **menghapus artikel** yang sudah ada, dan memastikan data benar-benar terhapus dari database.
 ## Sebelum
