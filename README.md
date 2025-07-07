@@ -439,3 +439,175 @@ Implementasikan fitur sorting (mengurutkan artikel berdasarkan judul, dll.) deng
 
 - Berdasarkan Kategori
 ![{98802889-33EB-4A4C-9C42-F056B0B687F5}](https://github.com/user-attachments/assets/aabee613-7f82-4b75-a221-5a0022aef72c)
+
+# Praktikum: REST API dengan CodeIgniter 4
+
+## 🛠️ Persiapan
+
+Periapan awal adalah mengunduh aplikasi **REST Client**.  
+Ada banyak aplikasi yang dapat digunakan untuk keperluan tersebut, salah satunya adalah **Postman**.
+
+🔹 **Postman** merupakan aplikasi yang berfungsi sebagai REST Client dan digunakan untuk melakukan testing REST API.  
+🔗 Unduh aplikasi Postman melalui tautan berikut:  
+[https://www.postman.com/downloads/](https://www.postman.com/downloads/)
+
+---
+
+## 🧩 Membuat Model
+
+Pada modul sebelumnya sudah dibuat `ArtikelModel`.  
+Pada modul ini, kita akan **memanfaatkan model tersebut** agar dapat diakses melalui API.
+
+---
+
+## 📁 Membuat REST Controller
+
+Pada tahap ini, kita akan membuat file **REST Controller** yang berisi fungsi-fungsi untuk:
+- Menampilkan data
+- Menambah data
+- Mengubah data
+- Menghapus data
+
+📌 Masuk ke direktori `app\Controllers` dan buat file baru bernama:
+```php
+<?php
+
+namespace App\Controllers;
+
+use CodeIgniter\RESTful\ResourceController;
+use CodeIgniter\API\ResponseTrait;
+use App\Models\ArtikelModel;
+
+class Post extends ResourceController
+{
+    use ResponseTrait;
+
+    // GET /post
+    public function index()
+    {
+        $model = new ArtikelModel();
+        $data = $model->orderBy('id', 'DESC')->findAll();
+        return $this->respond(['status' => 200, 'data' => $data]);
+    }
+
+    // POST /post
+    public function create()
+    {
+        $model = new ArtikelModel();
+
+        $data = [
+            'judul' => $this->request->getVar('judul'),
+            'isi'   => $this->request->getVar('isi'),
+            'status' => 1, // Set status ke public (1) secara default
+            'slug' => url_title($this->request->getVar('judul'), '-', true),
+        ];
+
+        if ($model->insert($data)) {
+            return $this->respondCreated([
+                'status' => 201,
+                'error' => null,
+                'messages' => [
+                    'success' => 'Data artikel berhasil ditambahkan.'
+                ]
+            ]);
+        }
+
+        return $this->failValidationErrors($model->errors());
+    }
+
+    // GET /post/{id}
+    public function show($id = null)
+    {
+        $model = new ArtikelModel();
+        $data = $model->find($id);
+
+        if ($data) {
+            return $this->respond(['status' => 200, 'data' => $data]);
+        }
+
+        return $this->failNotFound("Data artikel dengan ID $id tidak ditemukan.");
+    }
+
+    // PUT /post/{id}
+    public function update($id = null)
+    {
+        $model = new ArtikelModel();
+
+        $data = [
+            'judul' => $this->request->getVar('judul'),
+            'isi'   => $this->request->getVar('isi'),
+        ];
+
+        if (!$model->find($id)) {
+            return $this->failNotFound("Data artikel dengan ID $id tidak ditemukan.");
+        }
+
+        $model->update($id, $data);
+
+        return $this->respond([
+            'status' => 200,
+            'error' => null,
+            'messages' => [
+                'success' => 'Data artikel berhasil diubah.'
+            ]
+        ]);
+    }
+
+    // DELETE /post/{id}
+    public function delete($id = null)
+    {
+        $model = new ArtikelModel();
+
+        $data = $model->find($id);
+        if (!$data) {
+            return $this->failNotFound("Data artikel dengan ID $id tidak ditemukan.");
+        }
+
+        $model->delete($id);
+
+        return $this->respondDeleted([
+            'status' => 200,
+            'error' => null,
+            'messages' => [
+                'success' => 'Data artikel berhasil dihapus.'
+            ]
+        ]);
+    }
+}
+```
+## ⚙️ Penjelasan Method dalam REST Controller
+
+Kode di atas berisi **5 method**, yaitu:
+
+- **`index()`**  
+  Berfungsi untuk menampilkan seluruh data dari database.
+
+- **`create()`**  
+  Berfungsi untuk menambahkan data baru ke dalam database.
+
+- **`show($id)`**  
+  Berfungsi untuk menampilkan satu data spesifik berdasarkan ID.
+
+- **`update($id)`**  
+  Berfungsi untuk mengubah data yang sudah ada berdasarkan ID.
+
+- **`delete($id)`**  
+  Berfungsi untuk menghapus data dari database berdasarkan ID.
+
+## 🛣️ Membuat Routing REST API
+
+Untuk mengakses REST API di CodeIgniter 4, kita perlu **mendefinisikan route** terlebih dahulu.
+![image](https://github.com/user-attachments/assets/0c623406-a66e-4a2a-8ca8-45377e9ce42d)
+
+## Testing REST API CodeIgniter
+
+Buka aplikasi postman dan pilih create new → HTTP Request
+![image](https://github.com/user-attachments/assets/c5ca3df7-c5ea-48fe-935a-e14db24c3b2a)
+
+## Menampilkan Data Spesifik
+
+Masih menggunakan method GET, hanya perlu menambahkan ID artikel di belakang URL seperti ini:  
+http://localhost:8080/post/2
+
+Selanjutnya, klik Send. Request tersebut akan menampilkan data artikel yang memiliki ID nomor 2 di database.
+![image](https://github.com/user-attachments/assets/7b399a7b-4a93-4198-9cae-fe11fda65615)
