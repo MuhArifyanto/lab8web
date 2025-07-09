@@ -1,8 +1,8 @@
 ## Praktikum 7-10 
 
-| Nama | Kelas | NIM | 
-|------|-------|-----|
-| Muhammad Arif Mulyanto   |  TI.23.A.5     | 312310359 |
+| Nama | Kelas | NIM | Mata Kuliah |
+|------|-------|-----|-------------|
+| Muhammad Arif Mulyanto   |  TI.23.A.5     | 312310359 | Pemrograman Website 2 |
 
 ## Membuat Model: `KategoriModel`
 
